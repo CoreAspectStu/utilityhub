@@ -1,15 +1,41 @@
 import { tools } from '@/lib/tools';
 import type { Metadata } from 'next';
+import { siteConfig, absoluteUrl } from '@/lib/site';
+import { homeStructuredData, toolsListStructuredData } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
   title: 'UtilityHub — Free Online Utility Tools',
-  description:
-    'Free online utility tools: word counter, percentage calculator, text case converter, JSON formatter, and color picker. Fast, free, no sign-up required.',
+  description: siteConfig.description,
+  alternates: {
+    canonical: absoluteUrl(),
+  },
+  openGraph: {
+    title: 'UtilityHub — Free Online Utility Tools',
+    description: siteConfig.description,
+    url: absoluteUrl(),
+    type: 'website',
+    siteName: 'UtilityHub',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'UtilityHub — Free Online Utility Tools',
+    description: siteConfig.description,
+  },
 };
 
 export default function HomePage() {
   return (
     <div>
+      {/* Schema.org structured data for rich search results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeStructuredData()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolsListStructuredData()) }}
+      />
+
       {/* Hero */}
       <section className="text-center py-12 md:py-20">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">

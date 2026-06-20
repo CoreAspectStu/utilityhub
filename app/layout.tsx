@@ -1,14 +1,49 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { getAllToolSlugs, getTool } from '@/lib/tools';
+import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: 'UtilityHub — Free Online Tools',
     template: '%s | UtilityHub',
   },
-  description:
-    'Free online utility tools: word counter, percentage calculator, text case converter, JSON formatter, and color picker. Fast, free, no sign-up required.',
+  description: siteConfig.description,
+  applicationName: 'UtilityHub',
+  keywords: [
+    'online tools',
+    'free tools',
+    'word counter',
+    'percentage calculator',
+    'text case converter',
+    'json formatter',
+    'color picker',
+    'utility tools',
+  ],
+  authors: [{ name: 'UtilityHub' }],
+  creator: 'UtilityHub',
+  openGraph: {
+    type: 'website',
+    locale: siteConfig.locale,
+    siteName: 'UtilityHub',
+    title: 'UtilityHub — Free Online Tools',
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: 'summary',
+    site: siteConfig.twitter,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
